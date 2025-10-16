@@ -1,0 +1,230 @@
+
+
+/* body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 28px;
+    color: #333;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="datetime-local"],
+select,
+textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+.reset-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.reset-btn:hover {
+    background-color: #c82333;
+}
+
+
+@media (max-width: 600px) {
+    form {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 24px;
+        padding: 16px 0;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+} */
+
+
+/* add_stock.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #e3f2fd, #fce4ec);
+    margin: 0;
+    padding: 40px 20px;
+    color: #333;
+}
+
+.title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: #2c3e50;
+    text-shadow: 0 1px 0 #fff;
+}
+
+form {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.form-group {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+label {
+    font-size: 1rem;
+    margin-bottom: 6px;
+    color: #555;
+    font-weight: 500;
+}
+
+input,
+select,
+textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #999;
+    padding: 10px 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-bottom: 2px solid #0077cc;
+    outline: none;
+}
+
+.button-group {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.submit-btn {
+    background: #0077cc;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 119, 204, 0.3);
+}
+
+.submit-btn:hover {
+    background: #005fa3;
+}
+
+.reset-btn {
+    background: #f44336;
+    color: white;
+    box-shadow: 0 4px 10px rgba(244, 67, 54, 0.3);
+}
+
+.reset-btn:hover {
+    background: #d32f2f;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+    form {
+        flex-direction: column;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .button-group {
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+    }
+}

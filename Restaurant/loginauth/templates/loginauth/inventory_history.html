@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+<head>
+    <title>Inventory History</title>
+    <link rel="stylesheet" href="{% static 'Inventory_history.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        window.filterStockHistoryUrl = "{% url 'inventory_history_table' %}";
+    </script>
+    <script src="{% static 'inventory_history.js' %}" defer></script>
+</head>
+<body>
+    <h2>Inventory Stock History</h2>
+
+    <div class="filters">
+        <input type="hidden" id="item_id_holder" value="{{ item_id }}">
+        <label>From: <input type="date" id="from_date"></label>
+        <label>To: <input type="date" id="to_date"></label>
+        <label>Type: 
+            <select id="stock_type">
+                <option value="">All</option>
+                <option value="in">Stock In</option>
+                <option value="out">Stock Out</option>
+            </select>
+        </label>
+        <button id="search_btn">Search</button>
+        <button id="print_btn" >Print</button>
+
+    </div>
+
+    <div id="history_table">
+        <div id="printable_area">
+        {% include "loginauth/history_table.html" with stock_in_entries=stock_in_entries stock_out_entries=stock_out_entries %}
+        </div>
+    </div>
+
+
+</body>
+</html>

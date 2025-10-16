@@ -1,0 +1,53 @@
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Items</title>
+    <link rel="stylesheet" href="{% static 'stock_out.css' %}">
+    <script src="{% static 'stock_out.js' %}" defer></script>
+   
+</head>
+<body>
+    <h2 class="title"> Daily Usage</h2>
+
+    <form action="/stock_out/" method="POST">
+        {% csrf_token %}
+
+
+ <div>
+    <label for="date">Date</label>
+    <input type="datetime-local" name="date" id="date" readonly>
+</div>
+
+ <div id="form-container">
+     {{ formset.management_form }}
+     {% for form in formset %}
+     <div class="form-row stock-item">
+         <div>
+             <label>Item</label>
+             {{ form.item }}
+         </div>
+         <div>
+             <label>Quantity</label>
+             {{ form.quantity }}
+         </div>
+         <div>
+             <label>Used For</label>
+             {{ form.used_for }}
+         </div>
+     </div>
+     {% endfor %}
+ </div>
+
+
+ <button type="button"  class="add-btn"  onclick="initAddRowButton() " id="add-item">Add New</button>
+
+ <div class="button-group">
+     <button type="submit" class="submit-btn">Add Stock</button>
+     <button type="reset" class="reset-btn">Clear</button>
+ </div>
+</form>
+
+</body>
+</html>

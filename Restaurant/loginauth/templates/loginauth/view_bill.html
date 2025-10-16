@@ -1,0 +1,111 @@
+
+{% comment %} {% block content %}
+<div id="bill-content">
+    <h2 style="text-align: center;">{{ restaurant_name }}</h2>
+    <h3 style="text-align: center;">PL5-23 Near Railway station, New Panvel,Navi Mumbai-410206</h3>
+    <p><strong>GSTIN:</strong> {{ gstin_number }}</p>
+    <p><strong>Date:</strong> {{ bill.bill_date }}</p>
+    <p><strong>Bill No:</strong> {{ bill.bill_id }}</p>
+    <p><strong>Mode of Payment:</strong> {{ bill.mode_of_payment }}</p>
+
+    <table border="1" width="100%" cellpadding="5" cellspacing="0">
+        <tr>
+            <th>Particulars</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Amount</th>
+        </tr>
+        {% for item in order_items %}
+        <tr>
+            <td>{{ item.item.item_name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unit_price }}</td>
+            <td>{{ item.total_price }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3"><strong>Subtotal</strong></td>
+            <td>{{ subtotal }}</td>
+        </tr>
+        
+       
+        <tr>
+            <td colspan="3"><strong>Total Amount</strong></td>
+            <td><strong>{{ total }}</strong></td>
+        </tr>
+    </table>
+</div>
+<br>
+<button onclick="printBill()">🖨️ Print Bill</button>
+
+{% endblock %} {% endcomment %}
+
+
+
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Bill</title>
+    <link rel="stylesheet" href="{% static 'view_bill.css' %}">
+</head>
+<body>
+<div id="bill-content">
+    <h2 class="restaurant-name">{{ restaurant_name }}</h2>
+    <p class="address">PL-5 23, Near Railway Station,<br>Cidco Colony, New Panvel,<br> Navi Mumbai - 410206<br>
+    Tel No: 08 41442526
+    <br>GSTIN: {{ gstin_number }}</p>
+
+    <hr>
+
+    <div class="bill-meta">
+        <p><strong>Date </strong> {{ bill.bill_date }}</p>
+        <p><strong>Bill No:</strong> {{ bill.bill_id }}</p>
+        <p><strong>Mode of Payment:</strong> {{ bill.mode_of_payment }}</p>
+    </div>
+
+    <table class="items-table">
+        <thead>
+            <tr>
+                <th>Particulars</th>
+                <th>Qty</th>
+                <th>Rate</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order_items %}
+            <tr>
+                <td>{{ item.item.item_name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.unit_price }}</td>
+                <td>{{ item.total_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"><strong>Total Qty:</strong></td>
+                <td><strong>{{ total_quantity }}</strong></td>
+            </tr>
+            <tr>
+                <td colspan="3"><strong>Subtotal:</strong></td>
+                <td>{{ subtotal }}</td>
+            </tr>
+            <tr>
+                <td colspan="3"><strong>Total Amount:</strong></td>
+                <td><strong>{{ total }}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <p class="thanks-text">Thank you. Visit Again!</p>
+</div>
+
+<div class="print-button">
+    <button onclick="window.print()">🖨️ Print Bill</button>
+</div>
+</body>
+</html>

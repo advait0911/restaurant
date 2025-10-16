@@ -1,0 +1,150 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
+    
+    <!-- JavaScript -->
+    <script src="{% static 'dashboard.js' %}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+</head>
+<body>
+    {% csrf_token %}
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo"></div>
+        <ul class="main">
+            <li class="active">
+                <a href="#" onclick="loadPage('home.html')">
+                    <i class="fas fa-home"></i>
+                    <span> HOME</span>
+                </a>
+            </li>
+            
+          
+            
+            <li class="menu-menu">
+                <a href="#" onclick="toggleSubMenu('menu-submenu'); return false;">
+                    <i class="fas fa-utensils"></i>
+                    <span> MENU</span>
+                </a>
+                <ul class="submenu" id="menu-submenu">
+                    <li><a href="#" onclick="loadPage('/add_menu', null , 'Add_menu'); return false;">Add Menu</a></li>
+                    <li><a href="#" onclick="loadPage('/menu_show', '/static/show_menu.js', 'Show_menu'); return false;">Show Menu</a></li>
+                </ul>                
+            </li>
+            
+            <li class="order-menu">
+                <a href="#" onclick="toggleSubMenu('order-submenu'); return false;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span> ORDER</span>
+                </a>
+                <ul class="submenu" id="order-submenu">
+                    {% comment %} <li><a href="#" onclick="loadPage('/orders/dashboard', '/static/order_dashboard.js', 'Order_dashboard'); return false;">Order Dashboard</a></li> {% endcomment %}
+                    <li><a href="#" onclick="loadPage('/orders/new', '/static/create_order.js', 'New_order'); return false;">New Order</a></li>
+                    <li><a href="#" onclick="loadPage('/orders', '/static/order_list.js', 'Order_list'); return false;">Order List</a></li>
+                </ul>
+            </li>
+
+            <li class="kot-menu">
+                <a href="#" onclick="toggleSubMenu('kot-submenu'); return false;">
+                    <i class="fas fa-display"></i>
+                    <span> KOT</span>   
+                </a>
+                <ul class="submenu" id="kot-submenu">
+                    <li><a href="#" onclick="loadPage('/kitchen_orders', '/static/kitchen_orders.js', 'KOT_orders'); return false;">KOT Orders</a></li>
+                    
+                </ul>
+            </li>
+
+            <li class="bill-menu">
+                <a href="#" onclick="toggleSubMenu('bill-submenu'); return false;">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span> BILL</span>
+                </a>
+                <ul class="submenu" id="bill-submenu">
+                    <li><a href="#" onclick="loadPage('/generate_bill', '/static/generate_bill.js', 'Generate_bill'); return false;">Generate Bill</a></li>
+                    
+                </ul>
+                
+            </li>
+
+            <li class="inventory-menu">
+                <a href="#" onclick="toggleSubMenu('inventory-submenu'); return false;">
+                    <i class="fas fa-box"></i>
+                    <span> INVENTORY</span>
+                </a>
+                <ul class="submenu" id="inventory-submenu">
+                    <li><a href="#" onclick="loadPage('/inventory_item', null , 'Inventory_item'); return false;">Inventory Dashboard</a></li>
+                    <li><a href="#" onclick="loadPage('/inventory_stockitem', null , 'Inventory_stockitem'); return false;">Inventory Item</a></li>
+                    <li><a href="#" onclick="loadPage('/add_stock', '/static/add_stock.js' , 'Add_stock_in'); return false;">Stock Invoice</a></li>
+                    <li><a href="#" onclick="loadPage('/stock_out', '/static/stock_out.js'  , 'Add_stock_out'); return false;">Daily Usage</a></li>
+                    
+                    
+                    </ul>
+            </li>
+
+            <li class="settings-menu">
+                <a href="#" onclick="toggleSubMenu('settings-submenu'); return false;">
+                    <i class="fas fa-cog"></i>
+                    <span> SETTINGS</span>
+                </a>
+                <ul class="submenu" id="settings-submenu">
+                    <li><a href="#" onclick="loadPage('/add_waiter', null, 'Add_waiter'); return false;">Add Waiter</a></li>
+                    <li><a href="#" onclick="loadPage('/supplier', null , 'Supplier'); return false;">Add Supplier</a></li>
+                    <li><a href="#" onclick="loadPage('/supplier_staff_list', null , 'Supplier_list'); return false;">Supplier&Staff List</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#"><i class="fas fa-credit-card"></i> <span> PAYMENT</span></a>
+            </li>
+            
+            
+            
+            
+            <li class="logout">
+                <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span> LOGOUT</span>
+                </a>
+                <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+                    {% csrf_token %}
+                </form>
+            </li>
+            
+            
+        </ul>
+    </div>
+    
+     <!-- Content Area (Where Pages Load) -->
+    <div id="content">
+        <!-- Dynamic content will load here -->
+        
+    </div> 
+   
+
+    
+</body>
+
+</html> 
+
+
+
+
+

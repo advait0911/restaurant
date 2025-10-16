@@ -1,0 +1,78 @@
+{% load static %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Dashboard</title>
+  <link rel="stylesheet" href="{% static 'order_dashboard.css' %}">
+  <script>
+    const ORDER_DASHBOARD_URL = "{% url 'order_dashboard' %}/";
+</script>
+</head>
+<body>
+{% comment %} <div class="header">
+  <h2>Order Tables</h2>
+  <div>
+    <button class="btn" onclick="openModal()">Add Table</button>
+    <a href="{% url 'create_order' %}?type=takeaway" class="btn">New Takeaway</a>
+  </div>
+</div>
+
+<div class="table-grid">
+  {% for table in tables %}
+    <div class="table-box" data-table="{{ table.table_number }}" onclick="goToOrder('{{ table.table_number }}')">
+      {{ table.table_number }}
+      <button class="print-btn" onclick="event.stopPropagation(); printBill('{{ table.table_number }}')">Print</button>
+    </div>
+  {% empty %}
+    <p>No tables yet. Add one!</p>
+  {% endfor %}
+</div>
+
+<!-- Modal -->
+<div id="addTableModal" class="modal">
+  <div class="modal-content">
+    <h3>Add New Table</h3>
+    <form id="add-table-form" method="POST">
+      {% csrf_token %}
+      Table Number:
+      {{ table_form.table_number }}
+      <br><br>
+      <button type="submit" class="btn">Add</button>
+      <button type="button" class="btn cancel" onclick="closeModal()">Cancel</button>
+    </form>
+  </div>
+</div> {% endcomment %}
+
+<div class="header-buttons">
+    <button onclick="openModal()">➕ Add Table</button>
+    <a href="{% url 'create_order' %}"><button>🧾 New Order</button></a>
+</div>
+
+<div class="table-grid">
+    {% for table in tables %}
+    <div class="table-box">
+        <h4>{{ table.table_number }}</h4>
+        <a href="{% url 'create_order' %}?table={{ table.table_number }}"><button>New Order</button></a>
+        {% comment %} <a href="{% url 'print_bill' table.id %}"><button>Print Bill</button></a> {% endcomment %}
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Modal for Add Table -->
+<div id="addTableModal" class="modal">
+    <div class="modal-content">
+        <h3>Add New Table</h3>
+        <form id="addTableForm" method="POST" action="{% url 'add_table' %}">
+            {% csrf_token %}
+            <input type="text" name="table_number" placeholder="Enter Table No." required>
+            <br><br>
+            <button type="submit">Add</button>
+            <button type="button" onclick="closeModal()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'order_dashboard.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<div id="printable_area">
+{% if item_name %}
+    <h2 >Inventory History for: {{ item_name }}</h2>
+{% endif %}
+
+    {% if stock_in_entries or stock_out_entries %}
+        
+
+        {% if stock_in_entries %}
+        <h3>Stock In </h3>
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total Price</th>
+                    <th>Supplier</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in stock_in_entries %}
+                <tr>
+                    <td data-label="Date">{{ entry.date|date:"Y-m-d H:i" }}</td>
+                    <td data-label="Quantity">{{ entry.quantity }}</td>
+                    <td data-label="Unit Price">{{ entry.unit_price }}</td>
+                    <td data-label="Total Price">{{ entry.total_price }}</td>
+                    <td data-label="Supplier">{{ entry.supplier.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+        {% if stock_out_entries %}
+        <h3>Stock Out</h3>
+        <table class="history-table" >
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                    <th>Used For</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in stock_out_entries %}
+                <tr>
+                    <td data-label="Date">{{ entry.date|date:"Y-m-d H:i" }}</td>
+                    <td data-label="Quantity">{{ entry.quantity }}</td>
+                    <td data-label="Used For">{{ entry.used_for }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    {% else %}
+        <p>No records found for the selected criteria.</p>
+    {% endif %}
+
+    </div> 

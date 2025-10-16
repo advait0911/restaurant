@@ -1,0 +1,71 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Menu List</title>
+    <link rel="stylesheet" href="/static/show_menu.css">   
+    <script src="{% static 'show_menu.js' %}" defer></script>
+    
+
+</head>
+<body>
+    {% csrf_token %}
+    <div class="menu-container">
+    
+        <div class="tabs">
+            <button class="tab-button active" data-category="starters" onclick="openMenu('starters', this)">Starter</button>
+            <button class="tab-button " data-category="main_course" onclick="openMenu('main_course', this)">Main Course</button>
+            <button class="tab-button" data-category="drinks" onclick="openMenu('drinks', this)">Drinks</button>
+            <button class="tab-button" data-category="desserts" onclick="openMenu('desserts', this)">Desserts</button>
+        </div>
+
+        <div id="starters" class="menu-section active">
+            {% for item in starters %}
+            <div class="menu-card">
+                <img src="{{ item.image.url }}" alt="{{ item.item_name }}">
+                <h3>{{ item.item_name }}</h3>
+                <p> Category: {{ item.category }}</p>
+                <p>₹{{ item.price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    
+        <div id="main_course" class="menu-section ">
+            {% for item in main_course %}
+            <div class="menu-card">
+                <img src="{{ item.image.url }}" alt="{{ item.item_name }}">
+                <h3>{{ item.item_name }}</h3>
+                <p>Category: {{ item.category }}</p>
+                <p>₹{{ item.price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    
+        <div id="drinks" class="menu-section">
+            {% for item in drinks %}
+            <div class="menu-card">
+                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                <h3>{{ item.item_name }}</h3>
+                <p>Category: {{ item.category }}</p>
+                <p>₹{{ item.price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    
+        <div id="desserts" class="menu-section">
+            {% for item in desserts %}
+            <div class="menu-card">
+                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                <h3>{{ item.item_name }}</h3>
+                <p>Category: {{ item.category }}</p>
+                <p>₹{{ item.price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    
+</body>
+
+</html>

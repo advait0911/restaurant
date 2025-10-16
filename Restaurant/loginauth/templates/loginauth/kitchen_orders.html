@@ -1,0 +1,81 @@
+{% load static %}
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Orders</title>
+    <link rel="stylesheet" href="{% static 'kitchen_orders.css' %}">
+    <script src="{% static 'kitchen_orders.js' %}" defer></script>
+</head>
+<body>
+{% block content %}
+<h2>Kitchen Order Tickets (KOT)</h2>
+
+<div class="table-container">
+    <table>
+        <tr>
+            <th>KOT ID</th>
+            <th>Order Type</th>
+            <th>Order ID</th>
+            <th>Table No</th>
+            <th>Items</th>
+            <th>Created Time</th>
+            <th>Updated Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        {% for kot in kot_orders %}
+        <tr>
+            <td>{{ kot.kot_id }}</td>
+            <td> 
+                {% if kot.order.order_type == 'D' %}
+                Delivery
+                {% else %}
+                Dine-In
+                {% endif %}
+            </td>
+            <td>{{ kot.order.order_id }}</td>
+            <td>{{ kot.order.table_number }}</td>
+            <td>
+                <ul>
+                    {% for item in kot.items.all %}
+                    <li>{{ item.item.item_name }} - {{ item.quantity }} ({{ item.special_notes }})</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>{{ kot.created_at }}</td>
+            <td>{{ kot.updated_at }}</td>
+            <td>{{ kot.get_status_display }}</td>
+            <td>
+                {% comment %} <a href="{% url 'update_kot_status' kot.kot_id %}">Update Status</a> {% endcomment %}
+                <button class="update-kot-btn" onclick="openModal(this.getAttribute('data-kot-id'))" data-kot-id="{{ kot.kot_id }}">Update Status</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div id="updateKotModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Update KOT Status</h3>
+        <form id="updateKotForm">
+            {% csrf_token %}
+            <input type="hidden" id="kotId">
+            
+            <div class="status-options">
+                <div class="status-option" data-value="pending">Pending</div>
+                <div class="status-option" data-value="preparing">Preparing</div>
+                <div class="status-option" data-value="completed">Completed</div>
+            </div>
+
+            <input type="hidden" id="kotStatus">
+            
+            <button type="button" id="saveKotStatus">Update Status</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

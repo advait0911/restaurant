@@ -1,0 +1,50 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Bill</title>
+    <link rel="stylesheet" href="{% static 'generate_bill.css' %}">
+    <link rel="stylesheet" href="{% static 'view_bill.css' %}">
+    <script src="{% static 'generate_bill.js' %}" defer></script>
+    
+    
+</head>
+<body>
+  <div class="container">
+    <h2>Generate Bill</h2>
+    <form id="billForm" method="post" data-url="{% url 'generate_bill' %}" onsubmit="return handleBillFormSubmit(this, event);">
+      {% csrf_token %}
+  
+      <!-- KOT selection (multiple) -->
+      <label for="id_kot"> KOTs</label>
+      <select name="kot" id="id_kot" multiple required>
+        {% for kot in form.fields.kot.queryset %}
+          <option value="{{ kot.pk }}">KOT {{ kot.kot_id }} - {{ kot.order }}</option>
+        {% endfor %}
+      </select>
+  
+      <!-- Mode of Payment -->
+      <label for="id_mode_of_payment">Mode of Payment:</label>
+       <select name="mode_of_payment" id="id_mode_of_payment" required>
+        <option value="cash">Cash</option>
+        <option value="credit_card">Credit Card</option>
+        <option value="other">Other</option>
+      </select>
+  
+      <button type="submit" class="generate-btn">Generate Bill</button>
+    </form>
+  </div>
+
+<!-- Modal -->
+<div id="billModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="bill-content"></div>
+    <br>
+    <button onclick="printBill()" class="print-btn">🖨️ Print Bill</button>
+  </div>
+</div>
+</body>
+</html>

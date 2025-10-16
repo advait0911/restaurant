@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    padding: 30px;
+}
+h2.title {
+    color: #333;
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+input, select {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+.form-row > div {
+    flex: 1;
+}
+.button-group {
+    margin-top: 20px;
+}
+.add-btn, .submit-btn, .reset-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+}
+.add-btn {
+    background-color: #007bff;
+}
+.submit-btn {
+    background-color: #28a745;
+}
+.reset-btn {
+    background-color: #dc3545;
+    margin-left: 10px;
+}

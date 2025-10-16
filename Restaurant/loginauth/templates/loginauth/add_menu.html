@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Menu</title>
+    <link rel="stylesheet" href="/static/add_menu.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-box">
+        <h1>Add Menu Item</h1>
+        <form method="post" action="{% url 'add_menu' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <label for="item_name">Item Name:</label>
+            <input type="text" id="item_name" name="item_name" required>
+            
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+                <option value="">------</option>
+                <option value="Veg">Vegetarian</option>
+                <option value="Non-Veg">Non-Vegetarian</option>
+            </select>
+            
+            <label for="section">Section:</label>
+            <select id="section" name="section" required>
+                <option value="">------</option>
+                <option value="Starter">Starter</option>
+                <option value="Main Course">Main Course</option>
+                <option value="Desserts">Desserts</option>
+                <option value="Drinks">Drinks</option>
+            </select>
+            
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" step="0.01" required>
+            
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+            
+            <button type="submit">Add Item</button>
+        </form>
+    </div>
+    </div>
+</body>
+</html>
+
+
+

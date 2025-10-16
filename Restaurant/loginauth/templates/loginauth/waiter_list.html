@@ -1,0 +1,67 @@
+
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiter List</title>
+    <link rel="stylesheet" href="/static/waiter_list.css">
+    
+</head>
+
+<body>
+    <h2 class="title">Waiters List</h2>
+    <div class="table-container">
+        <table class="styled-table">
+    <thead>
+        <tr>
+            
+            <th>Waiter Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Hire Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for waiter in waiters %}
+        <tr>
+            <td>{{ waiter.waiter_name }}</td>
+            
+            <td>{{ waiter.email }}</td>
+            <td>{{ waiter.phone_number }}</td>
+            <td>{{ waiter.hire_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<br>
+<hr>
+<br>
+<h2 class="title">Suppliers List</h2>
+    <div class="table-container">
+        <table class="styled-table">
+    <thead>
+        <tr>
+            
+            <th>Supplier Name</th>
+            <th>Category</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for supplier in suppliers %}
+        <tr>
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.category }}</td>
+            <td>{{ supplier.contact_no }}</td>
+            <td>{{ supplier.address }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</body>
+</html>
+

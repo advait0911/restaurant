@@ -1,0 +1,41 @@
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Details</title>
+    <link rel="stylesheet" href="/static/add_waiter.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h2>Supplier Details</h2>
+            <form id="suppliierForm"  action="/supplier/" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="name">Supplier Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="contact_no">Phone Number:</label>
+                    <input type="tel" id="contact_no" name="contact_no" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+

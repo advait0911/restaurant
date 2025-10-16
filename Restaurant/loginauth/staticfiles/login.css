@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url("dining.jpg");
+    background-position: center ;
+    background-size: cover; 
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+.login-container {
+    background-color: #e9dede;
+    border-radius: 8px;
+    
+    box-shadow: 20 4px 8px rgba(97, 82, 82, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    max-height: 70%;
+
+}
+
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.login-container label {
+    font-weight: bold;
+    color: #555;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0 1rem 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #364138;
+}
+
+.login-container .register-link {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #46484a;
+}
+
+.login-container .register-link a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.login-container .register-link a:hover {
+    text-decoration: underline;
+}

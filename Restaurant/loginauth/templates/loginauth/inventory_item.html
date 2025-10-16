@@ -1,0 +1,48 @@
+{%load static %}
+<html>
+<head>
+    <title>Inventory Dashboard</title>
+    <link rel="stylesheet" href="{% static 'Inventory_item.css' %}">
+</head>
+<body>
+    {% block content %}
+    <h1>Inventory Dashboard</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Category</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Reorder Level</th>
+                <th>Status</th>
+                <th>History</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td data-label="Item">{{ item.name }}</td>
+                <td data-label="Category">{{ item.supplier.category }}</td>
+                <td data-label="Unit">{{ item.unit }}</td>
+                <td data-label="Quantity">{{ item.current_quantity }}</td>
+                <td data-label="Reorder Level">{{ item.reorder_level }}</td>
+                <td data-label="Status">
+                    {% if item.is_below_reorder %}
+                        <span class="low-stock">Low Stock</span>
+                    {% else %}
+                        <span class="sufficient-stock">Sufficient</span>
+                    {% endif %}
+                </td>
+                <td data-label="History">
+                    <a href="#" class="view-history"onclick="loadPage('/inventory_history/{{ item.id }}/', 'inventory_history.js', 'Inventory_History_{{ item.id }}'); return false;">View History</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+</body>
+</html>

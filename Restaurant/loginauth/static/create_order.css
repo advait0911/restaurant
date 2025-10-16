@@ -1,0 +1,120 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fdfeff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    background: white;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+fieldset {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+}
+.order-details .form-group {
+    display: flex;
+    flex-direction: column;
+    width: 300px; /* Set a smaller width */
+    margin-right: 15px; /* Add spacing between fields */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+input, select, textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Order Items Styling */
+.order-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-item .form-group {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    justify-content:center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.submit-btn, .reset-btn, .add-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn {
+    background: #28a745;
+    color: white;
+}
+
+.reset-btn {
+    background: #dc3545;
+    color: white;
+    
+}
+
+.add-btn {
+    background: #007bff;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .order-item {
+        flex-direction: column;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .submit-btn, .reset-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

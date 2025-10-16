@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ede4e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+
+}
+
+.form-container {
+    padding: 2rem;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+h1 span {
+    color: #ff9800;
+}
+
+p {
+    font-size: 0.9rem;
+    color: #090909;
+    margin-bottom: 1.5rem;
+}
+
+form label {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    display: block;
+    color: #171616;
+}
+
+form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #8f8c8c;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+form .forgot-password {
+    font-size: 0.8rem;
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+form .sign-in-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form .sign-in-btn:hover {
+    background-color: #0056b3;
+}
+
+.signup {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.signup a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signup a:hover {
+    text-decoration: underline;
+}
+
+.image-container {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    flex: 1;
+    background-color: #faf7f7;
+    border-radius: 10px;
+}
+
+.image-container img {
+    max-width: 100%;
+    height:max-content;
+}
