@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+from decouple import config
+import dj_database_url
 from pathlib import Path
 import os
  
@@ -22,12 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-33295g9bca)btud!9u5bt*ftu=!!ep_zukuj*2e9))(+#2+ewr'
+# SECRET_KEY = 'django-insecure-33295g9bca)btud!9u5bt*ftu=!!ep_zukuj*2e9))(+#2+ewr
+
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [config('ALLOWED_HOSTS', default='')]
 
 
 # Application definition
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -54,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Restaurant.urls'
+ROOT_URLCONF = 'restaurant.urls'
 
 TEMPLATES = [
     {
@@ -79,14 +83,18 @@ WSGI_APPLICATION = 'restaurant.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Specifies PostgreSQL as the database
-        'NAME': 'My_db',              # Replace with your PostgreSQL database name
-        'USER': 'postgres',                   # Your PostgreSQL username
-        'PASSWORD': 'advait@123',               # Your PostgreSQL password
-        'HOST': 'localhost',                       # Use 'localhost' if your database runs locally
-        'PORT': '5432',                            # Default PostgreSQL port
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',  # Specifies PostgreSQL as the database
+    #     'NAME': 'My_db',              # Replace with your PostgreSQL database name
+    #     'USER': 'postgres',                   # Your PostgreSQL username
+    #     'PASSWORD': 'advait@123',               # Your PostgreSQL password
+    #     'HOST': 'localhost',                       # Use 'localhost' if your database runs locally
+    #     'PORT': '5432',                            # Default PostgreSQL port
+    # }
+
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 
@@ -127,7 +135,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'loginauth/static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Media Files
